@@ -1,0 +1,14 @@
+{
+  "name": "hack-hour-personal",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "author": "m peters",
+  "license": "ISC"
+}
