@@ -50,5 +50,3 @@ const removeDuplicates = (nums) => {
 // console.log(removeDuplicates([0, 0, 0, 0, 0])); // 1
 
 module.exports = { removeDuplicates };
-
-
