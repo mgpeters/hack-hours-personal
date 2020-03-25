@@ -19,15 +19,22 @@
  * @param {string[]} strs
  * @return {string}
  */
-'use strict';
 
 const longestCommonPrefix = (strs) => {
   if (!Array.isArray(strs)) {
     throw new Error('Please input an Array of Strings');
   }
-  
+  let rightPointer = 1;
+  let buildStr = '';
+  for (let outer = 0; outer < strs.length; outer += 1) {
+    for (let inner = 0; inner < strs[outer].length; inner += 1) {
+
+    }
+  }
+  return buildStr;
 };
 
+//console.log(longestCommonPrefix('flower')); // Error
 console.log(longestCommonPrefix(['flower', 'flow', 'flight'])); // 'fl'
 console.log(longestCommonPrefix(['dog', 'racecar', 'car'])); // '' || none
 
