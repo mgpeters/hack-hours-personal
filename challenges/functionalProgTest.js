@@ -32,5 +32,5 @@ const mixedPotions = (str) => {
 };
 
 module.exports = {
-  mixedPotions, addOne, subtractOne, minMaxArray
+  mixedPotions, addOne, subtractOne, minMaxArray,
 };
