@@ -39,7 +39,6 @@ const highFive = (items) => {
   Object.entries(buildObj).forEach((arr) => {
     const build = [Number(arr[0])];
     let sum = 0;
-    console.log(arr)
     for (let i = 0; i < arr[1].length; i += 1) {
       sum += arr[1][i];
     }
