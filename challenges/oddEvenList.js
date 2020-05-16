@@ -36,15 +36,35 @@ function Node(val) {
 
 
 const oddEvenList = (head) => {
-  // let count = 1
-  let oddPointer = head;
-  let evenPointer = head.next;
+  if (!head) return head;
 
-  while (evenPointer || evenPointer.next) {
+  const evenHead = head.next;
 
+  let odd = head;
+  let even = head.next;
+
+  while (odd && odd.next) {
+    even = odd.next;
+    odd.next = odd.next.next;
+    if (odd.next) {
+      odd = odd.next;
+      even.next = odd.next;
+    }
   }
+
+  odd.next = evenHead;
+
   return head;
 };
+
+
+const testHead = new Node(1);
+testHead.next = new Node(2);
+testHead.next.next = new Node(3);
+testHead.next.next.next = new Node(4);
+testHead.next.next.next.next = new Node(5);
+
+console.log(oddEvenList(testHead));
 
 
 
