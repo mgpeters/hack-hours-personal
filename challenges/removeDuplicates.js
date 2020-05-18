@@ -28,12 +28,23 @@
  */
 
 const removeDuplicates = (nums) => {
-
+  let leftPointer = 0;
+  let rightPointer = 1;
+  // loop through array and remove duplicates with splice
+  while (nums[rightPointer] !== undefined) {
+    if (nums[leftPointer] === nums[rightPointer]) {
+      nums.splice(leftPointer, 1);
+    } else {
+      leftPointer += 1;
+      rightPointer += 1;
+    }
+  }
+  return nums.length;
 };
 
-// console.log(removeDuplicates([1, 1, 2])); // 2
-// console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])); // 5
-// console.log(removeDuplicates([1, 1])); // 1
-// console.log(removeDuplicates([0, 0, 0, 0, 0])); // 1
+console.log(removeDuplicates([1, 1, 2])); // 2
+console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])); // 5
+console.log(removeDuplicates([1, 1])); // 1
+console.log(removeDuplicates([0, 0, 0, 0, 0])); // 1
 
 module.exports = { removeDuplicates };
