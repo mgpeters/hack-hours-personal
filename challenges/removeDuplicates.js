@@ -28,20 +28,7 @@
  */
 
 const removeDuplicates = (nums) => {
-  let pointerLeft = 0;
-  let pointerRight = 1;
 
-  while (nums[pointerRight + 1] !== undefined || nums[pointerLeft + 1] !== undefined) {
-    if (nums[pointerLeft] === nums[pointerRight]) {
-      nums.splice(pointerLeft, 1);
-      pointerLeft = 0;
-      pointerRight = 1;
-    } else {
-      pointerLeft += 1;
-      pointerRight += 1;
-    }
-  }
-  return nums.length;
 };
 
 // console.log(removeDuplicates([1, 1, 2])); // 2
