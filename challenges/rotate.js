@@ -45,8 +45,8 @@ const rotate1 = (nums, k) => {
   // return left.concat(right);
 };
 
-console.log(rotate1([1, 2, 3, 4, 5, 6, 7], 3));
-console.log(rotate1([-1, -100, 3, 99], 2));
+// console.log(rotate1([1, 2, 3, 4, 5, 6, 7], 3));
+// console.log(rotate1([-1, -100, 3, 99], 2));
 
 // const rotate2 = (nums, k) => {
 //   if (k < 0) return Error('Please submit a positive number');
@@ -84,5 +84,27 @@ const rotate2 = (nums, k) => {
   return nums;
 };
 
-console.log(rotate2([1, 2, 3, 4, 5, 6, 7], 3));
-console.log(rotate2([-1, -100, 3, 99], 2));
+// console.log(rotate2([1, 2, 3, 4, 5, 6, 7], 3));
+// console.log(rotate2([-1, -100, 3, 99], 2));
+
+const rotate3 = (nums, k) => {
+  k %= nums.length;
+  console.log(k);
+
+  const reverse = (inums, start, end) => {
+    while (start < end) {
+      const temp = inums[start];
+      inums[start] = inums[end];
+      inums[end] = temp;
+      start += 1;
+      end += 1;
+    }
+  };
+
+  reverse(nums, 0, nums.length - 1);
+  reverse(nums, 0, k - 1);
+  reverse(nums, k, nums.length - 1);
+};
+
+console.log(rotate3([1, 2, 3, 4, 5, 6, 7], 3));
+// console.log(rotate3([-1, -100, 3, 99], 2));
