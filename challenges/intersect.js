@@ -25,6 +25,95 @@
  * @return {number[]}
  */
 
+// const intersect = (nums1, nums2) => {
+//   // set two pointers for each nums arry
+//   const returnedArray = [];
+//   // let pointer1 = 0;
+//   // let pointer2 = 0;
+//   // set variable for the longest length array
+//   // const longestLength = nums1.length > nums2.length ? nums1.length : nums2.length;
+//   const shorterNums = nums1.length > nums2.length ? nums2 : nums1;
+//   const longerNums = nums1.length < nums2.length ? nums2 : nums1;
+
+//   for (let i = 0; i < shorterNums.length; i += 1) {
+//     for (let j = i + 1; j < longerNums.length; j += 1) {
+//       if (shorterNums[i] === longerNums[j]) {
+//         returnedArray.push(shorterNums[i]);
+//         break;
+//       }
+//     }
+//   }
+//   return returnedArray;
+// };
+
+// const intersect = (nums1, nums2) => {
+//   // set two pointers for each nums arry
+//   const returnedArray = [];
+//   let pointer = 0;
+//   // let pointer2 = 0;
+//   // set variable for the longest length array
+//   const shorterNums = nums1.length > nums2.length ? nums2 : nums1;
+//   const longerNums = nums1.length < nums2.length ? nums2 : nums1;
+
+//   for (let i = 0; i < longerNums.length; i += 1) {
+//     // if (returnedArray.length === shorterNums.length) break;
+//     if (longerNums[i] === shorterNums[pointer]) {
+//       returnedArray.push(shorterNums[pointer]);
+//       pointer += 1;
+//     }
+//   }
+//   return returnedArray;
+// };
+
+// const intersect = (nums1, nums2) => {
+//   nums1.sort((a, b) => a - b);
+//   nums2.sort((a, b) => a - b);
+
+//   const returnedArray = [];
+
+//   let pointer = 0;
+
+//   const shorterNums = nums1.length > nums2.length ? nums2 : nums1;
+//   const longerNums = shorterNums === nums1 ? nums2 : nums1;
+
+//   for (let i = 0; i < longerNums.length; i += 1) {
+//     if (longerNums[i] === shorterNums[pointer]) {
+//       returnedArray.push(shorterNums[pointer]);
+//       pointer += 1;
+//     }
+//     if (longerNums[i] > shorterNums[pointer]) {
+//       pointer += 1;
+//     }
+//   }
+
+//   return returnedArray;
+// };
+
 const intersect = (nums1, nums2) => {
-    
+  const auxObject = {};
+  const returnedArray = [];
+
+  const shorterNums = nums1.length > nums2.length ? nums2 : nums1;
+  const longerNums = shorterNums === nums1 ? nums2 : nums1;
+
+  for (let i = 0; i < shorterNums.length; i += 1) {
+    if (!auxObject[shorterNums[i]]) {
+      auxObject[shorterNums[i]] = 1;
+    } else {
+      auxObject[shorterNums[i]] += 1;
+    }
+  }
+
+  for (let i = 0; i < longerNums.length; i += 1) {
+    if (auxObject[longerNums[i]] && auxObject[longerNums[i]] !== 0) {
+      returnedArray.push(longerNums[i]);
+      auxObject[longerNums[i]] -= 1;
+    }
+  }
+
+  return returnedArray;
 };
+
+console.log(intersect([1, 2, 2, 1], [2, 2]));
+console.log(intersect([4, 9, 5], [9, 4, 9, 8, 4]));
+console.log(intersect([1, 1], [1, 2]));
