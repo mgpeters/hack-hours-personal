@@ -47,8 +47,6 @@
 const isValidSudoku = (board) => {
   const flatBoard = board.flat();
   let auxObject = {};
-  // let columnObject = {};
-  // const threeXThreeObject = {};
   let auxCounter = 0;
 
   // row check
@@ -77,7 +75,7 @@ const isValidSudoku = (board) => {
     } else if (auxObject[board[i][auxCounter]]) return false;
 
     if (i === 8) {
-      i = 0;
+      i = -1;
       auxCounter += 1;
       auxObject = {};
     }
@@ -86,11 +84,54 @@ const isValidSudoku = (board) => {
   auxCounter = 0;
   auxObject = {};
 
-  // 3x3 check
+  let pointer1 = 0;
+  let pointer2 = 1;
+  let pointer3 = 2;
 
+  // 3x3 check
+  for (let i = 0; i < board.length; i += 1) {
+    if (board[i][pointer1] !== '.' && !auxObject[board[i][pointer1]]) {
+      auxObject[board[i][pointer1]] = true;
+    } else if (auxObject[board[i][pointer1]]) return false;
+
+    if (board[i][pointer2] !== '.' && !auxObject[board[i][pointer2]]) {
+      auxObject[board[i][pointer2]] = true;
+    } else if (auxObject[board[i][pointer2]]) return false;
+
+    if (board[i][pointer3] !== '.' && !auxObject[board[i][pointer3]]) {
+      auxObject[board[i][pointer3]] = true;
+    } else if (auxObject[board[i][pointer3]]) return false;
+
+    if (i >= 8 && pointer3 >= 8) break;
+
+    auxCounter += 1;
+    if (auxCounter % 3 === 0) {
+      auxObject = {};
+    }
+
+    if (i === 8) {
+      i = -1;
+      pointer1 += 3;
+      pointer2 += 3;
+      pointer3 += 3;
+    }
+  }
 
   return true;
 };
+
+console.log(isValidSudoku([
+  ['.', '.', '.', '.', '.', '.', '5', '.', '.'],
+  ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
+  ['.', '.', '.', '.', '.', '.', '.', '.', '3'],
+  ['.', '2', '.', '7', '.', '.', '.', '.', '.'],
+  ['8', '3', '6', '5', '.', '.', '.', '.', '1'],
+  ['.', '.', '.', '.', '.', '1', '.', '.', '.'],
+  ['2', '.', '.', '.', '.', '.', '.', '.', '5'],
+  ['.', '.', '.', '.', '.', '.', '.', '.', '7'],
+  ['.', '.', '.', '4', '.', '.', '.', '7', '.'],
+]));
+
 
 console.log(isValidSudoku([
   ['5', '3', '.', '.', '7', '.', '.', '.', '.'],
@@ -114,4 +155,16 @@ console.log(isValidSudoku([
   ['.', '6', '.', '.', '.', '.', '2', '8', '.'],
   ['.', '.', '.', '4', '1', '9', '.', '.', '5'],
   ['.', '.', '.', '.', '8', '.', '.', '7', '9'],
+]));
+
+console.log(isValidSudoku([
+  ['.', '1', '.', '5', '2', '.', '.', '.', '.'],
+  ['.', '.', '.', '.', '.', '6', '4', '3', '.'],
+  ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
+  ['5', '.', '.', '.', '.', '.', '9', '.', '.'],
+  ['.', '.', '.', '.', '.', '.', '.', '5', '.'],
+  ['.', '.', '.', '5', '.', '.', '.', '.', '.'],
+  ['9', '.', '.', '.', '.', '3', '.', '.', '.'],
+  ['.', '.', '6', '.', '.', '.', '.', '.', '.'],
+  ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
 ]));
