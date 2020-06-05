@@ -21,14 +21,14 @@ const isPalindrome = function (s) {
   if (!s) return true;
 
   const washedStr = s.replace(/[^a-z0-9+]+/gi, '').toLowerCase();
+  let backCounter = washedStr.length - 1;
 
-  let buildStr = '';
-
-  for (let i = washedStr.length - 1; i >= 0; i -= 1) {
-    buildStr += washedStr[i];
+  for (let i = 0; i < Math.ceil(washedStr.length / 2); i += 1) {
+    if (washedStr[i] !== washedStr[backCounter]) return false;
+    backCounter -= 1;
   }
 
-  return washedStr === buildStr;
+  return true;
 };
 
 console.log(isPalindrome('A man, a plan, a canal: Panama'));
