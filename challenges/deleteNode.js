@@ -51,9 +51,11 @@ head.next.next.next = new Node(9);
 console.log(head);
 
 const deleteNode = (node) => {
+  console.log(node);
   node.val = node.next.val;
   node.next = node.next.next;
+  console.log(node)
 };
 
-console.log(deleteNode(head)); // 5
+console.log(deleteNode(head.next)); // 5
 console.log(head);
