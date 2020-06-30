@@ -29,27 +29,23 @@
  * @return {ListNode}
  */
 const removeNthFromEnd = (head, n) => {
-  if (!head.next) return head;
-
   let pointer1 = head;
   let pointer2 = head;
-  // let counter = 0;
 
-  while (n--) {
-    pointer1 = pointer1.next;
-    // counter += 1;
+  // advance pointer2 as many spaces form the end
+  for (let i = 0; i < n; i += 1) {
+    pointer2 = pointer2.next;
   }
 
-  while (pointer2 !== null && pointer2.next !== null) {
+  if (pointer2 === null) return pointer1.next;
+
+  // Advance pointers to the end of the LL
+  while (pointer2.next) {
     pointer1 = pointer1.next;
     pointer2 = pointer2.next;
   }
 
-  if (!pointer1) {
-    pointer1 = pointer1.next;
-  } else {
-    pointer2.next = pointer2.next.next;
-  }
+  pointer1.next = pointer1.next.next;
 
   return head;
 };
@@ -59,13 +55,16 @@ function Node(val) {
   this.next = null;
 }
 
-// const head = new Node(4);
-// head.next = new Node(5);
-// head.next.next = new Node(1);
-// head.next.next.next = new Node(9);
+const head = new Node(4);
+head.next = new Node(5);
+head.next.next = new Node(1);
+head.next.next.next = new Node(9);
 
-const newHead = new Node(1);
+console.log(head);
 
-console.log(newHead);
+console.log(removeNthFromEnd(head, 1));
+// const newHead = new Node(1);
 
-console.log(removeNthFromEnd(newHead, 1));
+// console.log(newHead);
+
+// console.log(removeNthFromEnd(newHead, 1));
