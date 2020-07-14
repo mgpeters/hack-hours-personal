@@ -29,14 +29,33 @@ function ListNode(val, next) {
 }
 
 const isPalindrome = (head) => {
-  // create a new LL that's the reverse of input
-  let reversedLL = new ListNode();
+  // declare empty val array
+  const valArray = [];
+  // loop through nodes pushing to array
+  let pointer = head;
 
-  let temp = null;
-  // loop through reversing the arg ll
+  while (pointer) {
+    valArray.push(pointer.val);
+    pointer = pointer.next;
+  }
 
-  // traverse both lists, return false if vals are different
+  let tailPointer = valArray.length - 1;
 
-  // if loop concludes, return true
+  for (let i = 0; i < Math.ceil(valArray.length / 2); i += 1) {
+    if (valArray[i] !== valArray[tailPointer]) return false;
+
+    tailPointer -= 1;
+  }
+
   return true;
 };
+
+const head = new ListNode(1);
+head.next = new ListNode(2);
+head.next.next = new ListNode(5);
+head.next.next.next = new ListNode(2);
+head.next.next.next.next = new ListNode(1);
+
+console.log(head);
+
+console.log(isPalindrome(head));
