@@ -28,38 +28,38 @@
  * @return {number[][]}
  */
 
-// const levelOrder = (root) => {
-//   // error handling
-//   if (!root) return [];
-//   // create a returned array;
-//   const returnedArray = [];
-//   // push root node value into array
-//   returnedArray.push([root.val]);
-//   // create a 'queue' using an array
-//   const queue = [];
-//   // push root to queue
-//   queue.push(root);
-//   // iterate (while) BFS
-//   while (queue[0]) {
-//     // declare building array
-//     const subsetArray = [];
-//     // push both left and right to array and add to queue
-//     if (queue[0].left !== null) {
-//       queue.push(queue[0].left);
-//       subsetArray.push(queue[0].left.val);
-//     }
-//     if (queue[0].right !== null) {
-//       queue.push(queue[0].right);
-//       subsetArray.push(queue[0].right.val);
-//     }
-//     // shift off 0 element of array;
-//     queue.shift();
-//     // push in our build array
-//     if (subsetArray[0]) returnedArray.push(subsetArray);
-//   }
-//   // return built array BFS
-//   return returnedArray;
-// };
+const levelOrder = (root) => {
+  // error handling
+  if (!root) return [];
+  // create a returned array;
+  const returnedArray = [];
+  // push root node value into array
+  returnedArray.push([root.val]);
+  // create a 'queue' using an array
+  const queue = [];
+  // push root to queue
+  queue.push(root);
+  // iterate (while) BFS
+  while (queue[0]) {
+    // declare building array
+    const subsetArray = [];
+    // push both left and right to array and add to queue
+    if (queue[0].left !== null) {
+      queue.push(queue[0].left);
+      subsetArray.push(queue[0].left.val);
+    }
+    if (queue[0].right !== null) {
+      queue.push(queue[0].right);
+      subsetArray.push(queue[0].right.val);
+    }
+    // shift off 0 element of array;
+    queue.shift();
+    // push in our build array
+    if (subsetArray[0]) returnedArray.push(subsetArray);
+  }
+  // return built array BFS
+  return returnedArray;
+};
 
 function TreeNode(val, left, right) {
   this.val = (val === undefined ? 0 : val)
