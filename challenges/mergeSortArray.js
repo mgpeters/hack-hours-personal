@@ -36,7 +36,7 @@ const merge = (nums1, m, nums2, n) => {
   let pointer2 = n - 1;
   let length = m + n;
 
-  while (length--) {
+  while (--length) {
     length -= 1;
     if (pointer2 < 0 || nums1[pointer1] > nums2[pointer2]) {
       nums1[length] = nums1[pointer1];
