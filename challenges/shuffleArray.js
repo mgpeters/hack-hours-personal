@@ -20,11 +20,7 @@
  * @param {number[]} nums
  */
 const Solution = function (nums) {
-  // Clone a copy of original array;
-  this.original = [...nums];
-  console.log(this.original);
-  // have a bank of shuffled numbers
-  this.shuffled = [...nums];
+  this.nums = nums;
 };
 
 /**
@@ -32,8 +28,7 @@ const Solution = function (nums) {
  * @return {number[]}
  */
 Solution.prototype.reset = function () {
-  this.shuffled = [...this.original];
-  return this.shuffled;
+  return this.nums;
 };
 
 /**
@@ -41,13 +36,15 @@ Solution.prototype.reset = function () {
  * @return {number[]}
  */
 Solution.prototype.shuffle = function () {
-  for (let i = this.shuffled.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * i);
-    const temp = this.shuffled[i];
-    this.shuffled[i] = this.shuffled[j];
-    this.shuffled[j] = temp;
+  const array = [...this.nums];
+
+  for (let i = 0; i < array.length; i += 1) {
+    const j = Math.floor(Math.random() * (array.length - i)) + i;
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
-  return this.shuffled;
+  return array;
 };
 
 /**
