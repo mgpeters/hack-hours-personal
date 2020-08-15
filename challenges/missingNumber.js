@@ -20,8 +20,6 @@
  * @return {number}
  */
 const missingNumber = (nums) => {
-  if (nums[0] === 0) return 1;
-
   let numsSum = 0;
   let actualSum = 0;
   let lowest = Infinity;
@@ -33,20 +31,18 @@ const missingNumber = (nums) => {
     numsSum += nums[i];
   }
 
-  // console.log(lowest)
-  // console.log(highest)
-
   for (let i = lowest; i <= highest; i += 1) {
     actualSum += i;
   }
 
-  // console.log(numsSum);
-  // console.log(actualSum);
+  console.log(numsSum);
+  console.log(actualSum)
 
-  return actualSum - numsSum;
+  return numsSum === actualSum ? numsSum + 1 : actualSum - numsSum;
 };
 
-console.log(missingNumber([3, 0, 1])); // 2
-console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])); // 8
-console.log(missingNumber([0])); // 1
+// console.log(missingNumber([3, 0, 1])); // 2
+// console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])); // 8
+// console.log(missingNumber([0])); // 1
+console.log(missingNumber([1])); // 1
 
