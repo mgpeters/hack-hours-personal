@@ -39,17 +39,33 @@
  * @param {number[]} prices
  * @return {number}
  */
+
+// Peaks and valley approach
+
 const maxProfit = (prices) => {
-  let max = 0;
+  let i = 0;
+  let valley = prices[0];
+  let peak = prices[0];
+  let maximumProfit = 0;
 
-  for (let i = 1; i < prices.length; i += 1) {
-    if (prices[i - 1] < prices[i]) max += prices[i] - prices[i - 1];
+  while (i < prices.length - 1) {
+    while (i < prices.length - 1 && prices[i] >= prices[i + 1]) {
+      i += 1;
+    }
+
+    valley = prices[i];
+
+    while (i < prices.length - 1 && prices[i] <= prices[i + 1]) {
+      i += 1;
+    }
+
+    peak = prices[i];
+    maximumProfit += peak - valley;
   }
-
-  return max;
+  return maximumProfit;
 };
 
 
-console.log(maxProfit([7, 1, 5, 3, 6, 4]));
-console.log(maxProfit([1, 2, 3, 4, 5]));
-console.log(maxProfit([7, 6, 4, 3, 1]));
+console.log(maxProfit([7, 1, 5, 3, 6, 4])); // 7
+console.log(maxProfit([1, 2, 3, 4, 5])); // 4
+console.log(maxProfit([7, 6, 4, 3, 1])); // 0
