@@ -44,22 +44,28 @@
 
 const maxProfit = (prices) => {
   let i = 0;
+
   let valley = prices[0];
   let peak = prices[0];
+
   let maximumProfit = 0;
 
   while (i < prices.length - 1) {
+    // Check the valleys
     while (i < prices.length - 1 && prices[i] >= prices[i + 1]) {
       i += 1;
     }
 
     valley = prices[i];
 
+    // Check the peaks
     while (i < prices.length - 1 && prices[i] <= prices[i + 1]) {
       i += 1;
     }
 
     peak = prices[i];
+
+    // Add differences to max profit
     maximumProfit += peak - valley;
   }
   return maximumProfit;
