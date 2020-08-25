@@ -20,7 +20,6 @@ const permute = (nums) => {
 
   const permHelper = (current, throws) => {
     if (!throws) return returnedArray.push(current);
-console.log(throws)
     const filterCurrent = [current[0]];
 
     for (let i = 0; i < nums.length; i += 1) {
