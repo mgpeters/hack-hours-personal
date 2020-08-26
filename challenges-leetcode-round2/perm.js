@@ -10,6 +10,7 @@ function getAllPermutations(string) {
     const firstChar = string[i];
     const charsLeft = string.substring(0, i) + string.substring(i + 1);
     const innerPermutations = getAllPermutations(charsLeft);
+
     for (let j = 0; j < innerPermutations.length; j += 1) {
       results.push(firstChar + innerPermutations[j]);
       console.log(results);
@@ -18,5 +19,26 @@ function getAllPermutations(string) {
   return results;
 }
 
-console.log(getAllPermutations('123'));
-console.log('23'.substring(2));
+console.log(getAllPermutations('cat'));
+
+
+function combinations(str) {
+  const fn = (active, rest, a) => {
+    if (!active && !rest) return;
+    if (!rest) {
+      a.push(active);
+    } else {
+      fn(active + rest[0], rest.slice(1), a);
+      fn(active, rest.slice(1), a);
+    }
+    return a;
+  };
+
+  return fn('', str, []);
+}
+
+const test = []
+test.push(2);
+console.log(test)
+
+console.log(Boolean(0))
