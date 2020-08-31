@@ -22,17 +22,26 @@
 
 const mergeTwoLists = (l1, l2) => {
   // Create a returned merged list
-  const mergedList = new ListNode(0);
+  const returnedLL = new ListNode(0);
 
-  let mergedPointer = mergedList;
+  // create ll pointer
+  let newListPointer = returnedLL;
 
-  // iterate through lists advancing pointers
-  while () {
-    
+  // loop through merging both lists
+  while (l1 && l2) {
+    if (l1.val <= l2.val) {
+      newListPointer.next = l1;
+      l1 = l1.next;
+    } else {
+      newListPointer.next = l2;
+      l2 = l2.next;
+    }
+    newListPointer = newListPointer.next;
   }
 
+  newListPointer.next = l1 === null ? l2 : l1;
 
-  return mergedList.next;
+  return returnedLL.next;
 };
 
 function ListNode(val) {
@@ -47,3 +56,5 @@ ll1.next.next = new ListNode(4);
 const ll2 = new ListNode(1);
 ll2.next = new ListNode(3);
 ll2.next.next = new ListNode(4);
+
+console.log(mergeTwoLists(ll1, ll2));
