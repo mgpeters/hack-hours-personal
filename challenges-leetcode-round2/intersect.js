@@ -31,5 +31,38 @@
  * @return {number[]}
  */
 const intersect = (nums1, nums2) => {
+  // error checking
+  if (!Array.isArray(nums1) || !Array.isArray(nums2)) {
+    throw Error('Please submit arrays for argument');
+  }
 
+  const returnedArray = [];
+
+  const longerArray = nums1.length >= nums2.length ? nums1 : nums2;
+  const shorterArray = nums1.length >= nums2.length ? nums2 : nums1;
+
+  // nums1.sort((a, b) => a - b);
+  // nums2.sort((a, b) => a - b);
+
+  let slowPointer = 0;
+  let fastPointer = 0;
+
+  while (shorterArray[slowPointer] !== undefined) {
+    if (shorterArray[slowPointer] === longerArray[fastPointer]) {
+      returnedArray.push(shorterArray[slowPointer]);
+      slowPointer += 1;
+      fastPointer += 1;
+    } else if (longerArray[fastPointer] === undefined) {
+      slowPointer += 1;
+      fastPointer = slowPointer + 1;
+    } else {
+      fastPointer += 1;
+    }
+  }
+
+  return returnedArray;
 };
+
+// console.log(intersect([1, 2, 2, 1], [2, 2]));
+// console.log(intersect([4, 9, 5], [9, 4, 9, 8, 4]));
+console.log(intersect([1, 2], [1, 1]));
