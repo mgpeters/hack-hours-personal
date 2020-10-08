@@ -9,7 +9,6 @@
 //  / \ / \
 // 3  4 4  3
 
-
 // But the following [1,2,2,null,3,null,3] is not:
 
 //     1
@@ -17,7 +16,6 @@
 //   2   2
 //    \   \
 //    3    3
-
 
 // Follow up: Solve it both recursively and iteratively.
 
@@ -41,12 +39,14 @@ const isSymmetricRecursive = (root) => {
     // Termination case: If both trees are null
     if (tree1 === null && tree2 === null) return true;
     // Termination case: If one tree is null
-    if (tree1 == null || tree2 === null) return false;
+    if (tree1 === null || tree2 === null) return false;
 
-    return (tree1.val === tree2.val)
-      && isMirror(tree1.right, tree2.left)
-      && isMirror(tree1.left, tree2.right);
-  }
+    return (
+      tree1.val === tree2.val &&
+      isMirror(tree1.right, tree2.left) &&
+      isMirror(tree1.left, tree2.right)
+    );
+  };
 
   return isMirror(root, root);
 };
@@ -78,9 +78,9 @@ const isSymmetricIterative = (root) => {
 };
 
 function TreeNode(val, left, right) {
-  this.val = (val === undefined ? 0 : val)
-  this.left = (left === undefined ? null : left)
-  this.right = (right === undefined ? null : right)
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
 }
 
 const tree = new TreeNode(5);
