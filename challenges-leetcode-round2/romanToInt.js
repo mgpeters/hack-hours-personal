@@ -59,35 +59,33 @@ const romanToInt = function (str) {
   // input type checking
   if (typeof str !== 'string') throw Error('Input was not typeof: "string"');
 
+  // create a filter obj
+  const numerals = {
+    I: 1,
+    IV: 4,
+    V: 5,
+    IX: 9,
+    X: 10,
+    XL: 40,
+    L: 50,
+    XC: 90,
+    C: 100,
+    CD: 400,
+    D: 500,
+    CM: 900,
+    M: 1000,
+  };
+
   // var for returned number
   let returnedNum = 0;
 
   for (let i = 0; i < str.length; i += 1) {
-    if (str[i] === 'I' && str[i + 1] === 'V') {
-      returnedNum += 4;
+    if (numerals[str[i] + str[i + 1]]) {
+      returnedNum += numerals[str[i] + str[i + 1]];
       i += 1;
-    } else if (str[i] === 'I' && str[i + 1] === 'X') {
-      returnedNum += 9;
-      i += 1;
-    } else if (str[i] === 'X' && str[i + 1] === 'L') {
-      returnedNum += 40;
-      i += 1;
-    } else if (str[i] === 'X' && str[i + 1] === 'C') {
-      returnedNum += 90;
-      i += 1;
-    } else if (str[i] === 'C' && str[i + 1] === 'D') {
-      returnedNum += 400;
-      i += 1;
-    } else if (str[i] === 'C' && str[i + 1] === 'M') {
-      returnedNum += 900;
-      i += 1;
-    } else if (str[i] === 'I') returnedNum += 1;
-    else if (str[i] === 'V') returnedNum += 5;
-    else if (str[i] === 'X') returnedNum += 10;
-    else if (str[i] === 'L') returnedNum += 50;
-    else if (str[i] === 'C') returnedNum += 100;
-    else if (str[i] === 'D') returnedNum += 500;
-    else if (str[i] === 'M') returnedNum += 1000;
+    } else if (numerals[str[i]]) {
+      returnedNum += numerals[str[i]];
+    }
   }
 
   // return number
