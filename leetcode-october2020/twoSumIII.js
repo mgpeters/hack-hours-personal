@@ -32,36 +32,61 @@
 /**
  * Initialize your data structure here.
  */
-const TwoSum = function () {
-  this.stream = [];
-};
+// const TwoSum = function () {
+//   this.stream = [];
+// };
 
-/**
- * Add the number to an internal data structure..
- * @param {number} number
- * @return {void}
- */
-TwoSum.prototype.add = function (number) {
-  this.stream.push(number);
-};
+// /**
+//  * Add the number to an internal data structure..
+//  * @param {number} number
+//  * @return {void}
+//  */
+// TwoSum.prototype.add = function (number) {
+//   this.stream.push(number);
+// };
 
-/**
- * Find if there exists any pair of numbers which sum is equal to the value.
- * @param {number} value
- * @return {boolean}
- */
-TwoSum.prototype.find = function (value) {
-  const auxObj = {};
+// /**
+//  * Find if there exists any pair of numbers which sum is equal to the value.
+//  * @param {number} value
+//  * @return {boolean}
+//  */
+// TwoSum.prototype.find = function (value) {
+//   const auxObj = {};
 
-  for (let i = 0; i < this.stream.length; i += 1) {
-    const complement = value - this.stream[i];
-    if (auxObj[complement] !== undefined) return true;
+//   for (let i = 0; i < this.stream.length; i += 1) {
+//     const complement = value - this.stream[i];
+//     if (auxObj[complement] !== undefined) return true;
 
-    auxObj[this.stream[i]] = complement;
+//     auxObj[this.stream[i]] = complement;
+//   }
+
+//   return false;
+// };
+
+// Class Syntax
+
+class TwoSum {
+  constructor() {
+    this.stream = [];
   }
 
-  return false;
-};
+  add(number) {
+    this.stream.push(number);
+  }
+
+  find(value) {
+    const auxObj = {};
+
+    for (let i = 0; i < this.stream.length; i += 1) {
+      const complement = value - this.stream[i];
+      if (auxObj[complement] !== undefined) return true;
+
+      auxObj[this.stream[i]] = complement;
+    }
+
+    return false;
+  }
+}
 
 /**
  * Your TwoSum object will be instantiated and called as such:
