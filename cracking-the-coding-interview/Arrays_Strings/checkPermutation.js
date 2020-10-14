@@ -33,7 +33,7 @@ const checkPermutation = (str1, str2) => {
   return true //Object.keys(strObj).length === 0;
 };
 
-console.log(checkPermutation('boy', 'yob')); // true
-console.log(checkPermutation('bbe', 'beb')); // true
-console.log(checkPermutation('boye', 'yobw')); // false
-console.log(checkPermutation('asdf', 'ghjk')); // false
+console.log(checkPermutation('boy   ', 'yob   ')); // true
+// console.log(checkPermutation('bbe', 'beb')); // true
+// console.log(checkPermutation('boye', 'yobw')); // false
+// console.log(checkPermutation('asdf', 'ghjk')); // false
