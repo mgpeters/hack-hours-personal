@@ -29,8 +29,26 @@ const threeSum = (nums) => {
   // edge case
   if (nums.length <= 2) return returnedArray;
 
-  // sort input array
+  let p1 = 0;
+  let p2 = p1 + 1;
+  let p3 = nums.length - 1;
 
+  // sort input array
+  const sortedInput = nums.sort((a, b) => a - b);
+
+  while (p2 < p3) {
+    if (sortedInput[p1] + sortedInput[p2] + sortedInput[p3] === 0) {
+      returnedArray.push([sortedInput[p1], sortedInput[p2], sortedInput[p3]]);
+      p1 += 1;
+      p2 = p1 + 1;
+      p3 -= 1;
+    } else if (sortedInput[p1] + sortedInput[p2] + sortedInput[p3] < 0) {
+      p1 += 1;
+      p2 = p1 + 1;
+    } else if (sortedInput[p1] + sortedInput[p2] + sortedInput[p3] > 0) {
+      p3 -= 1;
+    }
+  }
 
   return returnedArray;
 };
@@ -38,7 +56,7 @@ const threeSum = (nums) => {
 console.log(threeSum([-1, 0, 1, 2, -1, -4])); // [[-1,-1,2],[-1,0,1]]
 console.log(threeSum([])); // []
 console.log(threeSum([0])); // []
-
+console.log(threeSum([0, 0, 0, 0])); // [[0,0,0]]
 
 /**
  * @param {number[]} nums
