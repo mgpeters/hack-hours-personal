@@ -28,12 +28,9 @@ const palPermutation = (str) => {
     }
   }
 
-  const remainder = Object.values(charCount).reduce((acc, curr) => {
-    acc += curr % 2;
-    return acc;
-  }, 0);
+  const remainder = Object.values(charCount).reduce((acc, curr) => curr % 2, 0);
 
-  return remainder === 0 || remainder === 1;
+  return remainder <= 1;
 };
 
 console.log(palPermutation('Tact Coa'));
