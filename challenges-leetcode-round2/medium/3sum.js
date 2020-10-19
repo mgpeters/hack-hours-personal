@@ -21,32 +21,38 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-const threeSum = (nums) => {
-  // input checking
-  if (!Array.isArray(nums)) throw Error('Please input typeof: Array');
-  // create a build/returned array
+
+const threeSum = (numsList) => {
+  if (!Array.isArray(numsList)) throw Error('Please input typeof: array');
+
+  numsList.sort((a, b) => a - b);
+
   const returnedArray = [];
-  // edge case
-  if (nums.length <= 2) return returnedArray;
 
-  let p1 = 0;
-  let p2 = p1 + 1;
-  let p3 = nums.length - 1;
+  const twoSumII = (nums, i, list) => {
+    let low = i + 1;
+    let hi = nums.length - 1;
 
-  // sort input array
-  const sortedInput = nums.sort((a, b) => a - b);
+    while (low < hi) {
+      const sum = nums[i] + nums[low] + nums[hi];
 
-  while (p2 < p3) {
-    if (sortedInput[p1] + sortedInput[p2] + sortedInput[p3] === 0) {
-      returnedArray.push([sortedInput[p1], sortedInput[p2], sortedInput[p3]]);
-      p1 += 1;
-      p2 = p1 + 1;
-      p3 -= 1;
-    } else if (sortedInput[p1] + sortedInput[p2] + sortedInput[p3] < 0) {
-      p1 += 1;
-      p2 = p1 + 1;
-    } else if (sortedInput[p1] + sortedInput[p2] + sortedInput[p3] > 0) {
-      p3 -= 1;
+      if (sum < 0) low += 1;
+      else if (sum > 0) hi -= 1;
+      else {
+        list.push([nums[i], nums[low], nums[hi]]);
+        low += 1;
+        hi -= 1;
+        // avoid duplicate results
+        while (low < hi && nums[low] === nums[low - 1]) {
+          low += 1;
+        }
+      }
+    }
+  };
+
+  for (let i = 0; i < numsList.length && numsList[i] <= 0; i += 1) {
+    if (i === 0 || numsList[i - 1] !== numsList[i]) { // avoid duplicate results
+      twoSumII(numsList, i, returnedArray);
     }
   }
 
@@ -57,41 +63,3 @@ console.log(threeSum([-1, 0, 1, 2, -1, -4])); // [[-1,-1,2],[-1,0,1]]
 console.log(threeSum([])); // []
 console.log(threeSum([0])); // []
 console.log(threeSum([0, 0, 0, 0])); // [[0,0,0]]
-
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
-// const threeSum = function (nums) {
-//   const rtn = [];
-//   if (nums.length < 3) {
-//     return rtn;
-//   }
-//   nums = nums.sort((a, b) => a - b);
-//   for (let i = 0; i < nums.length - 2; i++) {
-//     if (nums[i] > 0) {
-//       return rtn;
-//     }
-//     if (i > 0 && nums[i] == nums[i - 1]) {
-//       continue;
-//     }
-//     for (let j = i + 1, k = nums.length - 1; j < k;) {
-//       if (nums[i] + nums[j] + nums[k] === 0) {
-//         rtn.push([nums[i], nums[j], nums[k]]);
-//         j++;
-//         k--;
-//         while (j < k && nums[j] == nums[j - 1]) {
-//           j++;
-//         }
-//         while (j < k && nums[k] == nums[k + 1]) {
-//           k--;
-//         }
-//       } else if (nums[i] + nums[j] + nums[k] > 0) {
-//         k--;
-//       } else {
-//         j++;
-//       }
-//     }
-//   }
-//   return rtn;
-// };
