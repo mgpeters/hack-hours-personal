@@ -75,7 +75,7 @@ const addTwoNumbers = (l1, l2) => {
   return result.next;
 };
 
-console.log(10 % 10)
+// console.log(10 % 10)
 
 const ll1 = new ListNode(2);
 ll1.next = new ListNode(4);
