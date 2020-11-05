@@ -39,6 +39,8 @@ function ListNode(val) {
 }
 
 const oddEvenList = (head) => {
+  if (!head) return head;
+
   let odd = head;
   let even = head.next;
 
